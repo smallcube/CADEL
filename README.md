@@ -1,6 +1,6 @@
 # CADEL: Long-tailed Classification via CAscaded Deep Ensemble Learning
 
-Zhi Chen, Jiang Duan, Li Kang, Xin Li and Guoping Qiu
+Zhi Chen, Jiang Duan, Li Kang and Guoping Qiu
 
 This repository is the official PyTorch implementation of the paper [CADEL](https://arxiv.org/abs/).
 
