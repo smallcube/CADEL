@@ -1,0 +1,43 @@
+coslr: true
+criterions:
+  mixup:
+    alpha: 0.8
+endlr: 0.0
+last: false
+memory: {centroids: false, init_centroids: false}
+model_dir: ./logs/iNaturalist18/stage1/resnet50
+networks:
+  classifier:
+    def_file: ./models/CosNormClassifier.py
+    optim_params: {lr: 0.025, momentum: 0.9, weight_decay: 0.0005}
+    params: {in_dims: 2048, out_dims: 8142, scale: 30}
+  feat_model:
+    def_file: ./models/ResNet50Feature_Ensemble.py
+    fix: false
+    optim_params: {lr: 0.025, momentum: 0.9, weight_decay: 0.0005}
+    params: {dropout: null, use_fc: false, use_selfatt: false, num_classes: 8142, normalized: true, scale: 30}
+shuffle: true
+training_opt:
+  backbone: resnet50
+  batch_size: 128
+  image_size: 224
+  dataset: iNaturalist18
+  display_step: 200
+  feature_dim: 2048
+  log_dir: ./logs/iNaturalist18/stage2/resnet50
+  log_root: /logs/iNaturalist18
+  num_classes: 8142
+  num_epochs: 200
+  num_workers: 12
+  open_threshold: 0.1
+  sampler: null
+  scheduler_params: {gamma: 0.1, step_size: 30}
+  stage: resnet50
+  sub_dir: stage2
+  num_dir: ./data/iNaturalist18/num_shots.npz
+  warmup_epoch: 5
+  step1: 50
+  step2: 70
+  bins: 8
+  gamma: 2
+  base_weight: 1

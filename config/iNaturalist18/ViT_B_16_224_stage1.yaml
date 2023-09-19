@@ -1,0 +1,42 @@
+coslr: true
+criterions:
+  mixup:
+    alpha: 0.5
+endlr: 0.0
+last: false
+model_dir: null
+networks:
+  feat_model:
+    def_file: ./models/ViT_Ensemble_Create_Model.py
+    fix: false
+    optim_params: {lr: 0.0005, min_lr: 0.0000001, momentum: 0.9, weight_decay: 0.05, layer_decay: 0.75, adamW2: 0.99}
+    params: {img_size: 224, patch_size: 16, num_classes: 8142, drop_path: 0.2, global_pool: true,
+            classifier_num: 3, normalized: true, aux_depth: 2, scale: 30, embed_dim: 768, depth: 12, num_heads: 12, 
+            checkpoint: ./pretrain/iNat18_ Res_128.pth}
+shuffle: true
+training_opt:
+  backbone: ViTB_16_224
+  batch_size: 128
+  dataset: iNaturalist18
+  image_size: 224
+  display_step: 200
+  feature_dim: 768
+  log_dir: ./logs/iNaturalist18/models/ViTB_16_224
+  log_root: ./logs/iNaturalist18
+  num_classes: 8142
+  num_epochs: 100
+  num_workers: 8
+  open_threshold: 0.1
+  sampler: null
+  scheduler_params: {gamma: 0.1, step_size: 30}
+  stage: ViTB_16_ensemble
+  sub_dir: models
+  num_dir: ./data/iNaturalist18/num_shots.npz
+  gamma: 1
+  warmup_epoch: 5
+  step1: 50
+  step2: 70
+  tempture: 0.5
+  alpha: 0.9
+  base_weight: 2
+  bins: 8
