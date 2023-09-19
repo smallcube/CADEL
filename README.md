@@ -155,8 +155,8 @@ If you find our idea or code inspiring, please cite our paper:
 
 ```bibtex
 @article{CADEL,
-  title={CADEL: Long-tailed Classification via CAscaded Deep Ensemble Learning},
-  author={Zhi Chen, Jiang Duan, Li Kang, Xin Li and Guoping Qiu},
+  title={Long-tailed Classification via CAscaded Deep Ensemble Learning},
+  author={Zhi Chen, Jiang Duan, Yu Xiong, Cheng Yang and Guoping Qiu},
   year={2023},
   archivePrefix={arXiv},
   primaryClass={cs.AI}
