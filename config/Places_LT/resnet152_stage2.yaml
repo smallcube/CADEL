@@ -1,0 +1,51 @@
+coslr: true
+criterions:
+  no_mixup:
+    alpha: 0.8
+endlr: 0.0
+last: false
+memory: {centroids: false, init_centroids: false}
+model_dir: ./logs/Places_LT/stage1/resnet152
+networks:
+  classifier1:
+    def_file: ./models/Aux_Classifier.py
+    optim_params: {lr: 0.1, momentum: 0.9, weight_decay: 0.0005}
+    params: {in_dims: 512, out_dims: 365, groups: 32, reduction: 8, normalized: true, scale: 30}
+  classifier2:
+    def_file: ./models/Aux_Classifier.py
+    optim_params: {lr: 0.1, momentum: 0.9, weight_decay: 0.0005}
+    params: {in_dims: 1024, out_dims: 365, groups: 32, reduction: 8, normalized: true, scale: 30}
+  classifier3:
+    def_file: ./models/CosNormClassifier.py
+    optim_params: {lr: 0.1, momentum: 0.9, weight_decay: 0.0005}
+    params: {in_dims: 2048, out_dims: 365, scale: 30}
+  feat_model:
+    def_file: ./models/ResNet152FeatureCaffe.py
+    fix: false
+    optim_params: {lr: 0.001, momentum: 0.9, weight_decay: 0.0005}
+    params: {dropout: null, use_fc: false, use_selfatt: false, caffe: false, test: true}
+shuffle: true
+training_opt:
+  backbone: resnet152
+  batch_size: 256
+  image_size: 224
+  dataset: Places_LT
+  display_step: 200
+  feature_dim: 2048
+  log_dir: ./logs/Places_LT/stage2/resnet152
+  log_root: /logs/Places_LT
+  num_classes: 365
+  num_epochs: 30
+  num_workers: 12
+  open_threshold: 0.1
+  sampler: null
+  scheduler_params: {gamma: 0.1, step_size: 30}
+  stage: resnet152
+  sub_dir: stage2
+  num_dir: ./data/Places_LT/num_shots.npz
+  warmup_epoch: 5
+  step1: 50
+  step2: 70
+  bins: 8
+  gamma: 1
+  base_weight: 2
